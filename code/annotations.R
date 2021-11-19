@@ -3,11 +3,10 @@
 # This code doesn't need any special packages.
 # This code was tested and confirmed to work with R version 4.0.3 (2020-10-10), nickname "Bunny-Wunnies Freak Out".
 
-# set working directory to the folder containing the 29 .ann files (and nothing else)
-# setwd("./inputData/brat_files")
+# set working directory to the "inputData" folder.
 
 # import personnel data
-peeps<-read.csv("../personnel_blinded.csv", header=TRUE, sep=",")
+peeps<-read.csv("./personnel_blinded.csv", header=TRUE, sep=",")
 
 # below are the code labels from our QDA codebook
 # to use this with your data, you'll need to replace the "entities" and "attributes" lists below with those used in your Brat coding
@@ -44,7 +43,7 @@ attributes.long<-c(
   "sustained")
 
 # read in the .ann files
-file.names<-list.files()
+file.names <- list.files(path="./brat_files", full.names=T)
 annotations<-list()
 for (i in seq_along(file.names)) {
   annotations[[i]] <- read.table(file.names[i], header=FALSE, fill=TRUE)[,1:3]
@@ -102,7 +101,7 @@ paired<-c(	# 12-member paired palette from RColorBrewer
 ## second panel divides faculty versus postdocs (this info came from the personnel file)
 
 order<-c(2,1,3,5) # tool for subsetting from full set of attributes 
-pdf("../../outputs/Figure_1.pdf", height=4.48, width=8)
+pdf("./../outputs/Figure_1.pdf", height=4.48, width=8)
 #quartz(height=4.85, width=8) # old height=6
   par(mfrow=c(2,1),mar=c(3.5,11,0,2), oma=c(4,1,1,1), cex=1)# bottom, left, top, right
 
